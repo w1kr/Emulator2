@@ -1,0 +1,5 @@
+﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  vm.c
+c:\users\wlkr\desktop\2\examples\emulator2\vm.c(891): warning C4477: 'printf' : format string '%08p' requires an argument of type 'void *', but variadic argument 1 has type 'unsigned int'
+main.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+  template.vcxproj -> C:\Users\wlkr\Desktop\2\examples\emulator2\.\Debug\vm.exe
