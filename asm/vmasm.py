@@ -85,15 +85,13 @@ def parse_operand(text):
 
         return bytes([OPTYPE_REGW]) + pack_u32(reg)
 
-    m = re.fullmatch(r"byte\s+\[(0x[0-9a-fA-F]+|\d+)\]", text,
-                     re.IGNORECASE)
+    m = re.fullmatch(r"byte\s+\[(0x[0-9a-fA-F]+|\d+)\]", text, re.IGNORECASE)
     if m:
         address = parse_number(m.group(1))
 
         return bytes([OPTYPE_MEMB]) + pack_u32(address)
 
-    m = re.fullmatch(r"\[(0x[0-9a-fA-F]+|\d+)\]", text,
-                     re.IGNORECASE)
+    m = re.fullmatch(r"\[(0x[0-9a-fA-F]+|\d+)\]", text, re.IGNORECASE)
     if m:
         address = parse_number(m.group(1))
 
@@ -152,10 +150,10 @@ def parse_instruction(line, line_number):
         operands_text = parts[1].strip()
 
     if operands_text:
-        operands = [
-            x.strip()
-            for x in operands_text.split(",")
-        ]
+        operands = []
+        for x in operands_text.split(","):
+            operands.append(x.strip())
+        
     else:
         operands = []
 
