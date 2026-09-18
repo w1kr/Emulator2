@@ -719,8 +719,6 @@ static vm_ins_result vm_push (vm_struct *vm) {
     vmopvalue_t value;
     vmopvalue_t sp;
 	
-	
-
     ins = vm_get_current_instruction(vm);
     if(vm_get_operand(vm, &ins->op1, &value) != VM_RESULT_OK)
         return VM_RESULT_INVALID_OPERAND;
@@ -923,6 +921,8 @@ vm_ins_result vm_run_current_instruction (vm_struct *vm) {
         }
 
     vm->ip++;
+	vm->regs[VM_REG_IP] = vm->ip;
+	
 
     return res;
 }
@@ -954,7 +954,7 @@ static void vm_init (vm_struct *vm) {
     vm->fdin = _fileno (stdin);
     vm->fdout = _fileno (stdout);
     vm->ip = (vm_instruction*) (VM_CODE_START);
-    vm->state = VM_STATE_OK;
+	vm->state = VM_STATE_OK;
 
     memset (vm->memory, 0, VM_MEM_SIZE);
     memset (vm->regs, 0, VM_REG_COUNT * sizeof(vmopvalue_t));
